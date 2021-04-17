@@ -64,3 +64,62 @@ console.log('res of selection from array:', res);
 
 res = getEvenNumsFromArr(array2);
 console.log('even numbers:', res);
+
+
+
+//NEW HOMEWORK: MORE PRACTICE WITH FUNCS
+
+isPalindrome = (word) => {
+    let counter = 0;
+    for (let i = 0; i<word.length; i++) {
+         if (word.charAt(i) === word.charAt(word.length - (i+1))) counter++;
+    }
+    if(counter === word.length) return true;
+    else return false;
+}
+
+console.log('шалаш', isPalindrome('шалаш'));
+console.log('авпрпва', isPalindrome('авпрпва'));
+console.log('прпр', isPalindrome('прпр'));
+console.log('оооо', isPalindrome('оооо'));
+
+minFrom = (a, b) => {
+    return Math.min(a,b);
+}
+maxFrom = (a, b) => {
+    return Math.max(a,b);
+}
+minFrom2 = (a, b) => {
+    if(isNaN(a) || isNaN(b)) return NaN;
+    return (a<b) ? a : b;
+}
+
+
+console.log('min from (10, 11):', minFrom(10, 11));
+console.log('min from (10, 10):', minFrom(10, 10));
+console.log('min from (10, fdgf):', minFrom(10, 'fdgf'));
+
+console.log('min from (10, 6):', minFrom2(10, 6));
+console.log('min from (10, 6):', minFrom2(4, 'sdsaf'));
+
+getRandomArray = () => {
+    let array =[];
+    for (let i=0; i<10; i++){
+        array[i] = Math.floor(Math.random() * 100);
+    }
+    array[6] = 20;
+    return array;
+}
+
+getChangedArray = (arr) => {
+    for (let i=0; i<10; i++){
+        arr[i] = arr[i].toString().replace('0','zero');
+    }
+    return arr;
+}
+
+
+let myArray = getRandomArray();
+console.log('random array:', myArray);
+myArray = getChangedArray(myArray);
+console.log('changed array:', myArray);

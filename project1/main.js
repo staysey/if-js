@@ -64,7 +64,7 @@ console.log('res of selection from array:', res);
 
 res = getEvenNumsFromArr(array2);
 console.log('even numbers:', res);
-
+console.log('--------------------------------------------');
 
 
 //NEW HOMEWORK: MORE PRACTICE WITH FUNCS
@@ -123,3 +123,40 @@ let myArray = getRandomArray();
 console.log('random array:', myArray);
 myArray = getChangedArray(myArray);
 console.log('changed array:', myArray);
+console.log('--------------------------------------------');
+
+//NEW HOMEWORK: CONTINUE PRACTICING WITH FUNCS
+sum = (a) => {
+    return (b)=> {
+        return a+b;
+    };
+}
+console.log(sum(5)(2));
+
+const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+
+const firstText = document.getElementById('text1');
+const secondText = document.getElementById('text2');
+const thirdText = document.getElementById('text3');
+
+let counter1 = 0;
+let counter2 = 0;
+let counter3 = 0;
+
+firstText.addEventListener('click', ()=>{
+    firstText.style.color = colors[counter1];
+    counter1++;
+    if(counter1 === colors.length) counter1 = 0;
+})
+
+secondText.addEventListener('click', ()=>{
+    secondText.style.color = colors[counter2];
+    counter2++;
+    if(counter2 === colors.length) counter2 = 0;
+})
+
+thirdText.addEventListener('click', ()=>{
+    thirdText.style.color = colors[counter3];
+    counter3++;
+    if(counter3 === colors.length) counter3 = 0;
+})

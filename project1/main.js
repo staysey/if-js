@@ -75,7 +75,7 @@ isPalindrome = (word) => {
          if (word.charAt(i) === word.charAt(word.length - (i+1))) counter++;
     }
     if(counter === word.length) return true;
-    else return false;
+    return false;
 }
 
 console.log('шалаш', isPalindrome('шалаш'));
@@ -107,13 +107,13 @@ getRandomArray = () => {
     for (let i=0; i<10; i++){
         array[i] = Math.floor(Math.random() * 100);
     }
-    array[6] = 20;
+    array[6] = 200;
     return array;
 }
 
 getChangedArray = (arr) => {
     for (let i=0; i<10; i++){
-        arr[i] = arr[i].toString().replace('0','zero');
+        arr[i] = arr[i].toString().replaceAll('0','zero');
     }
     return arr;
 }

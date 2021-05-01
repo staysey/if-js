@@ -269,6 +269,22 @@ findCountries = (array) => {
 
 console.log('Countries:', findCountries(hotels));
 
+
+//CORRECT VARIANT!!
+const countries = hotels.reduce((acc, item) =>{
+    const result = {...acc};
+    if(!result[item.country]){
+        result[item.country] = [];
+    }
+    if(!result[item.country].includes(item.city)){
+        result[item.country].push(item.city);
+    }
+    return result;
+}, {})
+
+console.log('Countries(variant 2):', countries);
+
+
 //Num 4
 
 getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) =>{

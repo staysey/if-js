@@ -442,7 +442,7 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
     let checkInSelected = false;
     let checkOutSelected = false;
     let resultCalendar = [];
-    if(dayOfWeek+1>daysInWeek) throw new SyntaxError('Invalid number!!!');
+    if(dayOfWeek>daysInWeek) throw new SyntaxError('Invalid number!!!');
     resultCalendar[0]=[];
     let days = daysInMonth-dayOfWeek+1;
     for(let i=0; i<dayOfWeek; i++){
@@ -522,6 +522,7 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
     }
     let newOutput = [];
     for(let i=0; i<resultCalendar.length; i++){
+        newOutput[i] = [];
         for(let j=0; j<daysInWeek; j++){
             let obj = {
                 dayOfMonth: resultCalendar[i][j][0],
@@ -529,7 +530,7 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
                 selectedDay: resultCalendar[i][j][2]
             }
             if(!obj.selectedDay) obj.selectedDay = false;
-            newOutput.push(obj);
+            newOutput[i][j] = obj;
         }
     }
 

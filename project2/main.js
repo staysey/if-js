@@ -444,7 +444,8 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
     let resultCalendar = [];
     if(dayOfWeek>daysInWeek) throw new SyntaxError('Invalid number!!!');
     resultCalendar[0]=[];
-    let days = daysInMonth-dayOfWeek+1;
+    let daysInPrevMonth = new Date().daysInMonth(1);
+    let days = daysInPrevMonth-dayOfWeek+1;
     for(let i=0; i<dayOfWeek; i++){
         resultCalendar[0][i] = [];
         resultCalendar[0][i][0] = days;
@@ -520,6 +521,7 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
             newMonth++;
         }
     }
+    let today = new Date();
     let newOutput = [];
     for(let i=0; i<resultCalendar.length; i++){
         newOutput[i] = [];
@@ -527,9 +529,11 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
             let obj = {
                 dayOfMonth: resultCalendar[i][j][0],
                 notCurrentMonth: resultCalendar[i][j][1],
-                selectedDay: resultCalendar[i][j][2]
+                selectedDay: resultCalendar[i][j][2],
+                currentDay: false
             }
             if(!obj.selectedDay) obj.selectedDay = false;
+            if(obj.notCurrentMonth===false && obj.dayOfMonth===today.getDate()) obj.currentDay = true;
             newOutput[i][j] = obj;
         }
     }
@@ -537,15 +541,19 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
 return newOutput;
 }
 
-let daysInMonth2 = 30;
+Date.prototype.daysInMonth = function(count) {
+    return 32 - new Date(this.getFullYear(), this.getMonth()-count, 32).getDate();
+};
+
+let daysInMonth = new Date().daysInMonth(0);
 let daysInWeek2 = 6;
 let dayOfWeek2 = 3;
 try{
-    let calendarMonth2 = getCalendarMonth2(daysInMonth2, daysInWeek2, dayOfWeek2, 30, 5);
+    let calendarMonth2 = getCalendarMonth2(daysInMonth, daysInWeek2, dayOfWeek2, 30, 5);
     console.log(calendarMonth2);
-    let calendarMonth3 = getCalendarMonth2(30, 4, 2, 5, 9);
+    let calendarMonth3 = getCalendarMonth2(daysInMonth, 4, 2, 5, 9);
     console.log(calendarMonth3);
-    let calendarMonth4 = getCalendarMonth2(30, 5, 4, 1, 30);
+    let calendarMonth4 = getCalendarMonth2(daysInMonth, 5, 4, 1, 30);
     console.log(calendarMonth4);
     //let calendarMonth5 = getCalendarMonth2(30, 5, 100);
     //console.log(calendarMonth5);

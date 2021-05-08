@@ -1,12 +1,12 @@
 //NUM 1
-changeDate = (date) => {
+formatDate = (date) => {
    let arr = date.split('-');
    arr = arr.reverse();
    return arr.join('.');
 }
 
 const date = '2020-11-26';
-console.log('Changed date:', changeDate(date));
+console.log('Changed date:', formatDate(date));
 
 //NUM 2
 const data = [
@@ -53,12 +53,13 @@ const data = [
 ];
 
 findString = (array, str) => {
-    let res = -1;
+    let res = [];
     array.forEach(el => {
         if (el?.city?.includes(str) || el?.country?.includes(str) || el?.hotel?.includes(str)){
-            res = `${el.country}, ${el.city}, ${el.hotel}`;
+            res.push(`${el.country}, ${el.city}, ${el.hotel}`);
         }
     })
+    if (res.length === 0) return -1;
     return res;
 }
 
@@ -383,11 +384,12 @@ const obj3 = {
     b: 'b',
 };
 
-let trueorfalse = true;
+let isEqual = true;
 
 const deepEqual = (object1, object2) => {
     let keys1 = Object.keys(object1);
     let keys2 = Object.keys(object2);
+    if(keys1.length !== keys2.length) isEqual = false;
     keys1.sort();
     keys2.sort();
     if(keys1.join('') === keys2.join('')){
@@ -395,20 +397,20 @@ const deepEqual = (object1, object2) => {
         let val2 = Object.values(object2);
         val1.sort();
         val2.sort();
-        if(val1.length !== val2.length) trueorfalse = false;
+        if(val1.length !== val2.length) isEqual = false;
         for(let i = 0; i<val1.length; i++){
             if(typeof val1[i] === 'object' && typeof val2[i] === 'object' ) deepEqual(val1[i], val2[i]);
             else{
                 if(val1[i] === val2[i]) continue;
-                else trueorfalse = false;
+                else isEqual = false;
             }
         }
     }
-    return trueorfalse;
+    return isEqual;
 }
 
 console.log('DeepEqual result:', deepEqual(obj1, obj2)); // true
-trueorfalse = true;
+isEqual = true;
 console.log('DeepEqual result:', deepEqual(obj1, obj3)); // false
 
 const obj4 = {
@@ -429,9 +431,9 @@ const obj6 = {
         b: 'fgfg'
     }
 };
-trueorfalse = true;
+isEqual = true;
 console.log('DeepEqual result:', deepEqual(obj4, obj5)); // false
-trueorfalse = true;
+isEqual = true;
 console.log('DeepEqual result:', deepEqual(obj4, obj6)); // true
 
 console.log('----------------------------------------CALENDAR----------------------------------------'); // false

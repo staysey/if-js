@@ -389,7 +389,7 @@ let isEqual = true;
 const deepEqual = (object1, object2) => {
     let keys1 = Object.keys(object1);
     let keys2 = Object.keys(object2);
-    if(keys1.length !== keys2.length) isEqual = false;
+    if(keys1.length !== keys2.length) return false;
     keys1.sort();
     keys2.sort();
     if(keys1.join('') === keys2.join('')){
@@ -397,7 +397,7 @@ const deepEqual = (object1, object2) => {
         let val2 = Object.values(object2);
         val1.sort();
         val2.sort();
-        if(val1.length !== val2.length) isEqual = false;
+        if(val1.length !== val2.length) return false;
         for(let i = 0; i<val1.length; i++){
             if(typeof val1[i] === 'object' && typeof val2[i] === 'object' ) deepEqual(val1[i], val2[i]);
             else{

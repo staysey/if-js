@@ -3,13 +3,16 @@ class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
     }
-    set _firstName(firstName){
+
+    set _firstName(firstName) {
         this.firstName = firstName;
     }
-    set _lastName(lastName){
+
+    set _lastName(lastName) {
         this.lastName = lastName;
     }
 }
@@ -20,6 +23,7 @@ class Student extends User {
         this.admissionYear = admissionYear;
         this.courseName = courseName;
     }
+
     get course() {
         return 2021 - this.admissionYear;
     }
@@ -52,19 +56,20 @@ const studentsData = [
     }
 ];
 
-class Students{
+class Students {
     constructor(students) {
         this.students = students;
     }
-    getInfo(){
-        let newArray = this.students.sort((a,b) => {
+
+    getInfo() {
+        let newArray = this.students.sort((a, b) => {
             return a.course > b.course ? 1 : -1;
         });
         let output = [];
         newArray.forEach(el => {
             output.push(`${el.fullName} - ${el.courseName}, ${el.course} курс`);
         })
-         return output;
+        return output;
     }
 }
 

@@ -17,7 +17,7 @@ describe("Changing date function", () => {
 findString = (arr, str) => {
     let res = -1;
     arr.forEach(el => {
-        if (el?.city?.includes(str) || el?.country?.includes(str) || el?.hotel?.includes(str)){
+        if (el?.city?.includes(str) || el?.country?.includes(str) || el?.hotel?.includes(str)) {
             res = `${el.country}, ${el.city}, ${el.hotel}`;
         }
     })

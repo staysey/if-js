@@ -1,4 +1,3 @@
-
 //Number 1
 writeName = (name) => {
     console.log('name:', name);
@@ -26,14 +25,14 @@ console.log('boolean result:', test);
 //Number 3
 multiplyNumbers = (arr) => {
     let res = 1;
-    for (let i = 0; i<arr.length; i++) res*=arr[i];
+    for (let i = 0; i < arr.length; i++) res *= arr[i];
     return res;
 }
 getNumsFromArray = (arr) => {
     let resArray = [];
     let j = 0;
-    for (let i = 0; i<arr.length; i++) {
-        if(arr[i] > 5 && arr[i] < 10) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 5 && arr[i] < 10) {
             resArray[j] = arr[i];
             j++;
         }
@@ -43,8 +42,8 @@ getNumsFromArray = (arr) => {
 getEvenNumsFromArr = (arr) => {
     let resArray = [];
     let j = 0;
-    for (let i = 0; i<arr.length; i++) {
-        if(arr[i] % 2 === 0) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
             resArray[j] = arr[i];
             j++;
         }
@@ -71,10 +70,10 @@ console.log('--------------------------------------------');
 
 isPalindrome = (word) => {
     let counter = 0;
-    for (let i = 0; i<word.length; i++) {
-         if (word.charAt(i) === word.charAt(word.length - (i+1))) counter++;
+    for (let i = 0; i < word.length; i++) {
+        if (word.charAt(i) === word.charAt(word.length - (i + 1))) counter++;
     }
-    if(counter === word.length) return true;
+    if (counter === word.length) return true;
     return false;
 }
 
@@ -84,14 +83,14 @@ console.log('прпр', isPalindrome('прпр'));
 console.log('оооо', isPalindrome('оооо'));
 
 minFrom = (a, b) => {
-    return Math.min(a,b);
+    return Math.min(a, b);
 }
 maxFrom = (a, b) => {
-    return Math.max(a,b);
+    return Math.max(a, b);
 }
 minFrom2 = (a, b) => {
-    if(isNaN(a) || isNaN(b)) return NaN;
-    return (a<b) ? a : b;
+    if (isNaN(a) || isNaN(b)) return NaN;
+    return (a < b) ? a : b;
 }
 
 
@@ -103,8 +102,8 @@ console.log('min from (10, 6):', minFrom2(10, 6));
 console.log('min from (10, 6):', minFrom2(4, 'sdsaf'));
 
 getRandomArray = () => {
-    let array =[];
-    for (let i=0; i<10; i++){
+    let array = [];
+    for (let i = 0; i < 10; i++) {
         array[i] = Math.floor(Math.random() * 100);
     }
     array[6] = 200;
@@ -112,8 +111,8 @@ getRandomArray = () => {
 }
 
 getChangedArray = (arr) => {
-    for (let i=0; i<10; i++){
-        arr[i] = arr[i].toString().replaceAll('0','zero');
+    for (let i = 0; i < 10; i++) {
+        arr[i] = arr[i].toString().replaceAll('0', 'zero');
     }
     return arr;
 }
@@ -127,8 +126,8 @@ console.log('--------------------------------------------');
 
 //NEW HOMEWORK: CONTINUE PRACTICING WITH FUNCS
 sum = (a) => {
-    return (b)=> {
-        return a+b;
+    return (b) => {
+        return a + b;
     };
 }
 console.log(sum(5)(2));
@@ -143,20 +142,20 @@ let counter1 = 0;
 let counter2 = 0;
 let counter3 = 0;
 
-firstText.addEventListener('click', ()=>{
+firstText.addEventListener('click', () => {
     firstText.style.color = colors[counter1];
     counter1++;
-    if(counter1 === colors.length) counter1 = 0;
+    if (counter1 === colors.length) counter1 = 0;
 })
 
-secondText.addEventListener('click', ()=>{
+secondText.addEventListener('click', () => {
     secondText.style.color = colors[counter2];
     counter2++;
-    if(counter2 === colors.length) counter2 = 0;
+    if (counter2 === colors.length) counter2 = 0;
 })
 
-thirdText.addEventListener('click', ()=>{
+thirdText.addEventListener('click', () => {
     thirdText.style.color = colors[counter3];
     counter3++;
-    if(counter3 === colors.length) counter3 = 0;
+    if (counter3 === colors.length) counter3 = 0;
 })

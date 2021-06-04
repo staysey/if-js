@@ -1,8 +1,8 @@
 //NUM 1
 formatDate = (date) => {
-   let arr = date.split('-');
-   arr = arr.reverse();
-   return arr.join('.');
+    let arr = date.split('-');
+    arr = arr.reverse();
+    return arr.join('.');
 }
 
 const date = '2020-11-26';
@@ -55,7 +55,7 @@ const data = [
 findString = (array, str) => {
     let res = [];
     array.forEach(el => {
-        if (el?.city?.includes(str) || el?.country?.includes(str) || el?.hotel?.includes(str)){
+        if (el?.city?.includes(str) || el?.country?.includes(str) || el?.hotel?.includes(str)) {
             res.push(`${el.country}, ${el.city}, ${el.hotel}`);
         }
     })
@@ -72,7 +72,7 @@ console.log('--------------------------------------------');
 //WORKING WITH ARRAY
 //Num 1
 isPalindrome = (word) => {
-    if(Array.from(word).reverse().join('')===Array.from(word).join('')) return true;
+    if (Array.from(word).reverse().join('') === Array.from(word).join('')) return true;
     return false;
 }
 
@@ -242,9 +242,9 @@ const hotels = [
     },
 ];
 
-getCountryIndex = (arr, country) =>{
-    for(let i=0; i<arr.length; i++){
-        if(arr[i][0].includes(country)) return i;
+getCountryIndex = (arr, country) => {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i][0].includes(country)) return i;
     }
     return -1;
 }
@@ -254,10 +254,9 @@ findCountries = (array) => {
     let i = 0;
     array.forEach(el => {
         let res = getCountryIndex(countries, el?.country); //find index of existing country
-        if(res!==-1){
+        if (res !== -1) {
             countries[res][1].push(el?.city); //add city to existing country
-        }
-        else{
+        } else {
             countries[i] = [];
             countries[i][0] = el?.country; //add new country
             countries[i][1] = [];
@@ -272,12 +271,12 @@ console.log('Countries:', findCountries(hotels));
 
 
 //CORRECT VARIANT!!
-const countries = hotels.reduce((acc, item) =>{
+const countries = hotels.reduce((acc, item) => {
     const result = {...acc};
-    if(!result[item.country]){
+    if (!result[item.country]) {
         result[item.country] = [];
     }
-    if(!result[item.country].includes(item.city)){
+    if (!result[item.country].includes(item.city)) {
         result[item.country].push(item.city);
     }
     return result;
@@ -389,19 +388,19 @@ let isEqual = true;
 const deepEqual = (object1, object2) => {
     let keys1 = Object.keys(object1);
     let keys2 = Object.keys(object2);
-    if(keys1.length !== keys2.length) return false;
+    if (keys1.length !== keys2.length) return false;
     keys1.sort();
     keys2.sort();
-    if(keys1.join('') === keys2.join('')){
+    if (keys1.join('') === keys2.join('')) {
         let val1 = Object.values(object1);
         let val2 = Object.values(object2);
         val1.sort();
         val2.sort();
-        if(val1.length !== val2.length) return false;
-        for(let i = 0; i<val1.length; i++){
-            if(typeof val1[i] === 'object' && typeof val2[i] === 'object' ) deepEqual(val1[i], val2[i]);
-            else{
-                if(val1[i] === val2[i]) continue;
+        if (val1.length !== val2.length) return false;
+        for (let i = 0; i < val1.length; i++) {
+            if (typeof val1[i] === 'object' && typeof val2[i] === 'object') deepEqual(val1[i], val2[i]);
+            else {
+                if (val1[i] === val2[i]) continue;
                 else isEqual = false;
             }
         }
@@ -438,19 +437,19 @@ console.log('DeepEqual result:', deepEqual(obj4, obj6)); // true
 
 console.log('----------------------------------------CALENDAR----------------------------------------'); // false
 
-getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
+getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) => {
     let checkInSelected = false;
     let checkOutSelected = false;
     let resultCalendar = [];
-    if(dayOfWeek>daysInWeek) throw new SyntaxError('Invalid number!!!');
-    resultCalendar[0]=[];
+    if (dayOfWeek > daysInWeek) throw new SyntaxError('Invalid number!!!');
+    resultCalendar[0] = [];
     let daysInPrevMonth = new Date().daysInMonth(1);
-    let days = daysInPrevMonth-dayOfWeek+1;
-    for(let i=0; i<dayOfWeek; i++){
+    let days = daysInPrevMonth - dayOfWeek + 1;
+    for (let i = 0; i < dayOfWeek; i++) {
         resultCalendar[0][i] = [];
         resultCalendar[0][i][0] = days;
         resultCalendar[0][i][1] = true;  //previous month
-        if(days === checkIn) {
+        if (days === checkIn) {
             resultCalendar[0][i][2] = true;
             checkInSelected = true;
         }
@@ -458,45 +457,44 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
     }
     let endDayInWeekOne = 1;
 
-    for(let i=dayOfWeek; i<daysInWeek; i++) {
+    for (let i = dayOfWeek; i < daysInWeek; i++) {
         resultCalendar[0][i] = [];
         resultCalendar[0][i][0] = endDayInWeekOne;
         resultCalendar[0][i][1] = false;
-        if(endDayInWeekOne === checkIn && !checkInSelected) {
+        if (endDayInWeekOne === checkIn && !checkInSelected) {
             resultCalendar[0][i][2] = true;
             checkInSelected = true;
         }
-        if(endDayInWeekOne === checkOut && !checkOutSelected) {
+        if (endDayInWeekOne === checkOut && !checkOutSelected) {
             resultCalendar[0][i][2] = true;
             checkOutSelected = true;
         }
         endDayInWeekOne++;
     }
-    let numOfWeek=1;
+    let numOfWeek = 1;
     let weekCounter = 0;
     let createNewWeek = true;
 
-    for(let i=0; i<daysInMonth-daysInWeek+dayOfWeek; i++){
-        if(createNewWeek) {
+    for (let i = 0; i < daysInMonth - daysInWeek + dayOfWeek; i++) {
+        if (createNewWeek) {
             resultCalendar[numOfWeek] = [];
             createNewWeek = false;
         }
-        if(weekCounter<daysInWeek){
+        if (weekCounter < daysInWeek) {
             resultCalendar[numOfWeek][weekCounter] = []
             resultCalendar[numOfWeek][weekCounter][0] = endDayInWeekOne;
             resultCalendar[numOfWeek][weekCounter][1] = false;
-            if(endDayInWeekOne === checkIn && !checkInSelected) {
+            if (endDayInWeekOne === checkIn && !checkInSelected) {
                 resultCalendar[numOfWeek][weekCounter][2] = true;
                 checkInSelected = true;
             }
-            if(endDayInWeekOne === checkOut && !checkOutSelected) {
+            if (endDayInWeekOne === checkOut && !checkOutSelected) {
                 resultCalendar[numOfWeek][weekCounter][2] = true;
                 checkOutSelected = true;
             }
             endDayInWeekOne++;
             weekCounter++;
-        }
-        else{
+        } else {
             createNewWeek = true;
             weekCounter = 0;
             numOfWeek++;
@@ -504,16 +502,16 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
         }
     }
     let newMonth = 1;
-    for(let i=0; i<daysInWeek; i++){
-        if(!resultCalendar[numOfWeek][i]) {
+    for (let i = 0; i < daysInWeek; i++) {
+        if (!resultCalendar[numOfWeek][i]) {
             resultCalendar[numOfWeek][i] = [];
             resultCalendar[numOfWeek][i][0] = newMonth;
             resultCalendar[numOfWeek][i][1] = true;
-            if(newMonth === checkIn && !checkInSelected) {
+            if (newMonth === checkIn && !checkInSelected) {
                 resultCalendar[numOfWeek][i][2] = true;
                 checkInSelected = true;
             }
-            if(newMonth === checkOut && !checkOutSelected) {
+            if (newMonth === checkOut && !checkOutSelected) {
                 resultCalendar[numOfWeek][i][2] = true;
                 checkOutSelected = true;
             }
@@ -523,32 +521,32 @@ getCalendarMonth2 = (daysInMonth, daysInWeek, dayOfWeek, checkIn, checkOut) =>{
     }
     let today = new Date();
     let newOutput = [];
-    for(let i=0; i<resultCalendar.length; i++){
+    for (let i = 0; i < resultCalendar.length; i++) {
         newOutput[i] = [];
-        for(let j=0; j<daysInWeek; j++){
+        for (let j = 0; j < daysInWeek; j++) {
             let obj = {
                 dayOfMonth: resultCalendar[i][j][0],
                 notCurrentMonth: resultCalendar[i][j][1],
                 selectedDay: resultCalendar[i][j][2],
                 currentDay: false
             }
-            if(!obj.selectedDay) obj.selectedDay = false;
-            if(obj.notCurrentMonth===false && obj.dayOfMonth===today.getDate()) obj.currentDay = true;
+            if (!obj.selectedDay) obj.selectedDay = false;
+            if (obj.notCurrentMonth === false && obj.dayOfMonth === today.getDate()) obj.currentDay = true;
             newOutput[i][j] = obj;
         }
     }
 
-return newOutput;
+    return newOutput;
 }
 
-Date.prototype.daysInMonth = function(count) {
-    return 32 - new Date(this.getFullYear(), this.getMonth()-count, 32).getDate();
+Date.prototype.daysInMonth = function (count) {
+    return 32 - new Date(this.getFullYear(), this.getMonth() - count, 32).getDate();
 };
 
 let daysInMonth = new Date().daysInMonth(0);
 let daysInWeek2 = 6;
 let dayOfWeek2 = 3;
-try{
+try {
     let calendarMonth2 = getCalendarMonth2(daysInMonth, daysInWeek2, dayOfWeek2, 30, 5);
     console.log(calendarMonth2);
     let calendarMonth3 = getCalendarMonth2(daysInMonth, 4, 2, 5, 9);
@@ -557,8 +555,7 @@ try{
     console.log(calendarMonth4);
     //let calendarMonth5 = getCalendarMonth2(30, 5, 100);
     //console.log(calendarMonth5);
-}
-catch (e){
+} catch (e) {
     if (e.name == "SyntaxError") {
         alert('Invalid number!!!');
     } else {

@@ -1,6 +1,6 @@
 sum = (a) => {
-    return (b)=> {
-        return a+b;
+    return (b) => {
+        return a + b;
     };
 }
 

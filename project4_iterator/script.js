@@ -1,14 +1,13 @@
-
 const colors = {
     arr: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
-    [Symbol.iterator] () {
-       return this;
+    [Symbol.iterator]() {
+        return this;
     },
     next(c) {
         let j = c[id];
         this.color = this.arr[j];
         j++;
-        if(j === this.arr.length) j=0;
+        if (j === this.arr.length) j = 0;
         c[id] = j;
         return {
             done: false,

@@ -116,12 +116,28 @@ addLabels = (containerName, array, i, id) => {
     secondText.appendChild(text);
 }
 
+let onScreenIndex = 0;
+let arrayLength = data.length;
+
+removeAllChildren = (containerName) =>{
+    while(containerName.firstChild) {
+        containerName.removeChild(containerName.lastChild);
+    }
+}
+
+arrowOnClickFunc=()=>{
+    if(onScreenIndex===arrayLength/2) onScreenIndex = 0;
+    else onScreenIndex+=4;
+    showFourCountries(onScreenIndex, data);
+}
+
 showFourCountries = (index, array) => {
     let id;
-    for (let i = index; i < 4; i++) {
+    removeAllChildren(homePicsContainer);
+    for (let i = index; i < index+4; i++) {
         let picSpan = document.createElement("span");
         homePicsContainer.appendChild(picSpan);
-        if (i === 3) {
+        if (i === index+3) {
             let homeWithArrow = document.createElement("span");
             picSpan.appendChild(homeWithArrow);
             homeWithArrow.style.cssText = `
@@ -159,6 +175,7 @@ showFourCountries = (index, array) => {
                height: 40px;
                width: 45px;
             `;
+            arrow.addEventListener('click', arrowOnClickFunc);
         } else {
             let eachPic = document.createElement("img");
             picSpan.appendChild(eachPic);
@@ -175,8 +192,7 @@ showFourCountries = (index, array) => {
     }
 }
 
-showFourCountries(0, data);
-
+showFourCountries(onScreenIndex, data);
 
 
 

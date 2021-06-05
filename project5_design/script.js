@@ -119,25 +119,25 @@ addLabels = (containerName, array, i, id) => {
 let onScreenIndex = 0;
 let arrayLength = data.length;
 
-removeAllChildren = (containerName) =>{
-    while(containerName.firstChild) {
+removeAllChildren = (containerName) => {
+    while (containerName.firstChild) {
         containerName.removeChild(containerName.lastChild);
     }
 }
 
-arrowOnClickFunc=()=>{
-    if(onScreenIndex===arrayLength/2) onScreenIndex = 0;
-    else onScreenIndex+=4;
+arrowOnClickFunc = () => {
+    if (onScreenIndex === arrayLength / 2) onScreenIndex = 0;
+    else onScreenIndex += 4;
     showFourCountries(onScreenIndex, data);
 }
 
 showFourCountries = (index, array) => {
     let id;
     removeAllChildren(homePicsContainer);
-    for (let i = index; i < index+4; i++) {
+    for (let i = index; i < index + 4; i++) {
         let picSpan = document.createElement("span");
         homePicsContainer.appendChild(picSpan);
-        if (i === index+3) {
+        if (i === index + 3) {
             let homeWithArrow = document.createElement("span");
             picSpan.appendChild(homeWithArrow);
             homeWithArrow.style.cssText = `
